@@ -38,8 +38,29 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
-}
+    let result = '';
+    for (i = 0; i < (expr.length / 10); i++) {
+        let morse = '';
+        let ten = expr.substring(i * 10, i * 10 + 10);
+        if (expr.substring(i * 10, i * 10 + 10) === '**********') {
+            morse = ' ';
+        } else {
+            let rez = '';
+            for (j = 0; j < (ten.length / 2); j++) {
+                if (ten.substring(j * 2, j * 2 + 2) === '00') {
+                    rez += '';
+                } else if (ten.substring(j * 2, j * 2 + 2) === '10') {
+                    rez += '.';
+                } else if (ten.substring(j * 2, j * 2 + 2) === '11') {
+                    rez += '-';
+                };
+            };
+            morse = MORSE_TABLE[rez];
+        };
+        result += morse;
+    };
+    return result;
+};
 
 module.exports = {
     decode
